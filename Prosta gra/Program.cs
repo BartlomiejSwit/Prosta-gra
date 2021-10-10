@@ -16,7 +16,7 @@ namespace Prosta_gra
         {
             //string nazwaPostaci;
             StworzBron();
-            ObslugalMenu();
+            ObslugaMenu();
 
             //Console.ReadLine();
           
@@ -61,10 +61,10 @@ namespace Prosta_gra
             //_zbroje.Add(napiersnik);
 
         }
-        static void ObslugalMenu()
+        static void ObslugaMenu()
         {
             Console.Clear();
-            Console.WriteLine("Mpja Pierwsza Gra");
+            Console.WriteLine("Moja Pierwsza Gra");
             Console.WriteLine("1. Nowa Gra");
             Console.WriteLine("2. Wczytaj grę");
             Console.WriteLine("3. Wyjście");
@@ -153,8 +153,7 @@ namespace Prosta_gra
             if (wynikWalki)
             {
                 BonusyZaZwyciestwo();
-            }
-              
+            }              
         
         }
         static bool Walka()
@@ -165,8 +164,13 @@ namespace Prosta_gra
 
             while (_bohater.PosiadaneZycie > 0)
             {
-                int obrazenia = _bohater.NoszonaBron.ObliczObrazenia();
-                int obrazeniaZadane = Losuj.Next(obrazenia-2, obrazenia+2); //+ dmgBroni; //Dodanie obrażen z broni
+                int obrazenia = 0 ;
+
+                if (_bohater.NoszonaBron != null)
+                {
+                    obrazenia = _bohater.NoszonaBron.ObliczObrazenia();
+                }
+                int obrazeniaZadane = Losuj.Next(obrazenia - 2, obrazenia + 2); //+ dmgBroni; //Dodanie obrażen z broni
                 zyciePrzeciwnika -= obrazeniaZadane;
 
                 if (zyciePrzeciwnika <= 0)
@@ -174,7 +178,7 @@ namespace Prosta_gra
 
                 int obrazeniaOtrzymane = Losuj.Next(0, 4);
                 _bohater.PosiadaneZycie -= obrazeniaOtrzymane;
-                
+
             }
             return false;
 
